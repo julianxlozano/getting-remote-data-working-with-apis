@@ -1,6 +1,7 @@
 require 'net/http'
  require 'open-uri'
  require 'json'
+ require 'pry'
  
  class GetPrograms
 
@@ -13,13 +14,20 @@ require 'net/http'
   end
 
   def program_school
+    binding.pry 
     programs = JSON.parse(self.get_programs)
+    binding.pry 
     programs.collect do |program|
+      binding.pry 
       program["agency"]
+      puts "test"
     end
   end
 
 end
 
- programs = GetPrograms.new.get_programs
- puts programs
+ #programs = GetPrograms.new.get_programs.uniq 
+# puts programs
+
+programs = GetPrograms.new
+puts programs.program_school.uniq 
